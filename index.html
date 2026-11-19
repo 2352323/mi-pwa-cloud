@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>La Pizarra · Arma tu once</title>
+  <meta name="description" content="Pizarra táctica de fútbol: elige un esquema, arrastra a tus jugadores y ponles nombre. Funciona sin conexión.">
+  <meta name="theme-color" content="#0A2820">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preload" href="fonts/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#" aria-label="La Pizarra, inicio">
+      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="#FFD21F"/>
+        <circle cx="16" cy="16" r="7" fill="none" stroke="#0A2820" stroke-width="2.2"/>
+        <path d="M3 16h26" stroke="#0A2820" stroke-width="2.2"/>
+      </svg>
+      <span>La Pizarra</span>
+    </a>
+    <button id="install" class="btn btn-ghost" type="button" hidden>Instalar app</button>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="titulo">
+      <div class="area-top">
+        <h1 id="titulo">Arma<br>tu once.</h1>
+        <p class="lede">Elige un esquema, arrastra a cada jugador y ponle nombre. Tu alineación se guarda en este dispositivo.</p>
+
+        <div class="formations" role="radiogroup" aria-label="Esquema táctico" id="formations"></div>
+      </div>
+
+      <div class="board" id="board-wrap">
+        <svg id="board" viewBox="0 0 680 880" role="group" aria-label="Cancha con once jugadores. Usa Tab para elegir un jugador y las flechas para moverlo.">
+          <defs>
+            <clipPath id="clip"><rect x="20" y="20" width="640" height="840" rx="6"/></clipPath>
+          </defs>
+          <rect width="680" height="880" fill="#0E3A2D"/>
+          <g clip-path="url(#clip)" id="stripes"></g>
+          <g class="lines" fill="none" stroke="#F2EFE4" stroke-width="3" stroke-linecap="round" opacity=".85">
+            <rect x="20" y="20" width="640" height="840" rx="6"/>
+            <path d="M20 440h640"/>
+            <circle cx="340" cy="440" r="72"/>
+            <rect x="138" y="20" width="404" height="150"/>
+            <rect x="228" y="20" width="224" height="56"/>
+            <path d="M270 170a72 72 0 0 0 140 0"/>
+            <rect x="138" y="710" width="404" height="150"/>
+            <rect x="228" y="804" width="224" height="56"/>
+            <path d="M270 710a72 72 0 0 1 140 0"/>
+          </g>
+          <g fill="#F2EFE4" opacity=".85">
+            <circle cx="340" cy="440" r="5"/>
+            <circle cx="340" cy="126" r="4"/>
+            <circle cx="340" cy="754" r="4"/>
+          </g>
+          <g id="players"></g>
+        </svg>
+      </div>
+
+      <div class="area-bottom">
+        <div class="notes" aria-live="polite">
+          <h2 id="f-name">4-3-3</h2>
+          <p id="f-desc"></p>
+          <dl>
+            <div><dt>A favor</dt><dd id="f-pro"></dd></div>
+            <div><dt>En contra</dt><dd id="f-con"></dd></div>
+          </dl>
+        </div>
+
+        <form class="player-form" id="player-form" autocomplete="off">
+          <label for="player-name" id="player-label">Toca un jugador para nombrarlo</label>
+          <div class="row">
+            <input id="player-name" type="text" maxlength="14" placeholder="Nombre" disabled>
+          </div>
+          <div class="actions">
+            <button class="btn" type="button" id="reset">Restablecer esquema</button>
+            <button class="btn btn-solid" type="button" id="copy">Copiar alineación</button>
+          </div>
+          <p class="toast" id="toast" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="cloud" aria-labelledby="nube">
+      <div class="cloud-copy">
+        <h2 id="nube">Esta pizarra no vive en tu equipo</h2>
+        <p>La sirve Vercel desde su red de servidores. Tú subes el código a GitHub y la plataforma se encarga del resto: servidor, sistema operativo y certificado HTTPS. Eso es un servicio PaaS.</p>
+      </div>
+      <ul class="status" id="status">
+        <li><span>Servidor</span><strong id="st-host">—</strong></li>
+        <li><span>Conexión</span><strong id="st-net">—</strong></li>
+        <li><span>Modo sin conexión</span><strong id="st-sw">—</strong></li>
+        <li><span>Se abre como</span><strong id="st-mode">—</strong></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Laboratorio 7 · Cloud Computing · Nuevas Tecnologías del Desarrollo</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
